@@ -10,11 +10,13 @@ const routes = [
     },
     {
         path: '/home',
-        component: Home
-    },
-    {
-        path: '/info',
-        component: Info
+        component: Home,
+        children: [
+            {
+                path: 'info',
+                component: Info
+            }
+        ]
     },
     {
         path: '/login',

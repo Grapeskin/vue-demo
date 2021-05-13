@@ -1,11 +1,38 @@
 <template>
 
   <el-container>
-    <el-header>Header</el-header>
+    <el-header>
+      <el-row type="flex" class="row-bg" justify="space-between">
+        <el-col :span="6">
+          <div class="grid-content bg-purple">
+            <i class="el-icon-s-help"></i>XXX管理系统
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple-light"></div>
+        </el-col>
+        <el-col :span="1">
+          <div class="grid-content bg-purple">
+            <el-dropdown>
+              <span class="el-dropdown-link">
+        设置<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item icon="el-icon-plus">个人信息</el-dropdown-item>
+                  <el-dropdown-item icon="el-icon-circle-plus">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </div>
+        </el-col>
+      </el-row>
+    </el-header>
     <el-container>
       <el-aside width="200px">
         <el-menu
-            default-active="2"
+            default-active="1"
+            router="true"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose">
@@ -14,45 +41,31 @@
               <i class="el-icon-location"></i>
               <span>导航一</span>
             </template>
-            <el-menu-item-group>
+            <el-menu-item-group >
               <template #title>分组一</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
+              <el-menu-item index="/home/info">选项1</el-menu-item>
               <el-menu-item index="1-2">选项2</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="分组2">
               <el-menu-item index="1-3">选项3</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template #title>选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <template #title>导航二</template>
-          </el-menu-item>
-          <el-menu-item index="3" disabled>
-            <i class="el-icon-document"></i>
-            <template #title>导航三</template>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <template #title>导航四</template>
-          </el-menu-item>
-        </el-menu>
 
+          </el-submenu>
+          <el-submenu index="2">
+            <template #title>
+              <i class="el-icon-location"></i>
+              <span>导航二</span>
+            </template>
+            <el-menu-item-group>
+              <template #title>分组一</template>
+              <el-menu-item index="2-1">选项1</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </el-menu>
       </el-aside>
       <el-container>
         <el-main>
-          <el-row id="first-row">
-            <div class="grid-content bg-purple-dark">test</div>
-          </el-row>
-          <el-row id="second-row">
-            <div class="grid-content bg-purple">
-              test
-              <router-view></router-view>
-            </div>
-          </el-row>
+          <router-view></router-view>
         </el-main>
         <el-footer>Footer</el-footer>
       </el-container>
@@ -68,7 +81,7 @@ export default {
   data() {
     return {
       isCollapse: true
-    };
+    }
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -76,6 +89,7 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+
     }
   }
 }
@@ -100,7 +114,8 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  line-height: 40px;
+  padding: 0;
 }
 
 body > .el-container {
